@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Computational Thinking in Mathematics</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Work+Sans:wght@400;500&display=swap">
+<style>
+:root{--bg:#faf6f2;--alt:#f3efe8;--ink:#1d1a1a;--mute:#6b625c;--brand:#8f0a4a;--on:#fff;--card:#fffdfb;--line:#e6dfd6;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#1a1517;--alt:#221b1e;--ink:#f3ebe6;--mute:#b3a7a0;--brand:#d4457f;--card:#261e21;--line:#3a2f33}}
+:root[data-theme="dark"]{--bg:#1a1517;--alt:#221b1e;--ink:#f3ebe6;--mute:#b3a7a0;--brand:#d4457f;--card:#261e21;--line:#3a2f33}
+body{--bg:#fff;--alt:#fff;--ink:#000;--mute:#333;--card:#fff;--line:#e4e4e4;--brand:#8f0a4a}
+*{box-sizing:border-box}html{scroll-padding-top:70px}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.65 "Work Sans",system-ui,sans-serif}
+h1,h2,h3{font-family:"Cormorant Garamond",Georgia,serif;font-weight:600;margin:0;line-height:1.15}
+h1,h2{text-transform:uppercase;letter-spacing:.04em}
+h1{font-size:clamp(2rem,5vw,3.4rem)}h2{font-size:clamp(1.5rem,3vw,2.2rem)}h3{font-size:1.35rem}
+a{color:inherit}
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);border-bottom:1px solid var(--line);display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:12px 24px;gap:12px}
+nav .l a{margin-right:18px;text-decoration:none;color:var(--mute);font-size:.95rem}
+nav .t{font-family:"Cormorant Garamond",Georgia,serif;font-size:1.3rem;font-weight:600;text-align:center}
+nav .r{text-align:right}
+.btn{display:inline-block;background:var(--brand);color:var(--on);padding:9px 18px;border-radius:10px;text-decoration:none;font-size:.9rem;font-weight:500;border:0;cursor:pointer;font-family:inherit}
+.btn.light{background:var(--alt);color:var(--ink)}
+.w{max-width:1040px;margin:0 auto;padding:64px 24px}
+.alt{background:var(--alt)}
+.bar{width:48px;height:3px;background:var(--brand);margin-bottom:18px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:start}
+.cards{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.card{background:var(--card);border-radius:18px;padding:24px;border:1px solid var(--line)}
+.card p{color:var(--mute);margin:8px 0 0;font-size:.95rem}
+.cta{background:var(--brand);color:var(--on);text-align:center}
+.cta .w{padding:56px 24px}.cta p{max-width:560px;margin:14px auto 24px;opacity:.92}
+.cta .btn{background:var(--bg);color:var(--ink);padding:12px 22px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:40px 28px;margin-top:32px}
+.tile{text-decoration:none;display:block}
+.img{aspect-ratio:4/3;border-radius:16px;background:linear-gradient(135deg,var(--c1),var(--c2));background-size:cover;background-position:center;position:relative}
+.cap{font-size:.85rem;color:var(--mute);margin:10px 0 0;text-align:left;line-height:1.4}
+.big{font-size:clamp(1.8rem,3.6vw,2.6rem);margin-bottom:18px}
+.opt:empty{display:none}body.edit .opt:empty{display:block;min-height:1.3em}
+.sbox{position:relative;aspect-ratio:485/402;border-radius:16px;overflow:hidden;border:1px solid var(--line)}.sbox iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.tb{white-space:pre-wrap;word-break:break-word;margin:0}body.edit .tb:empty{min-height:8em}
+.editonly{display:none}body.edit .editonly{display:block}
+.img.wide{aspect-ratio:21/9}
+.img.empty{display:none}body.edit .img.empty{display:block}
+.tile h3{margin:14px 0 4px}.tile p{margin:0;color:var(--mute);font-size:.92rem}
+.pill{display:inline-block;background:var(--alt);border:1px solid var(--line);border-radius:99px;padding:2px 12px;font-size:.8rem;color:var(--mute);margin-bottom:10px}
+.sec p{max-width:70ch;white-space:pre-line}
+.crit{display:grid;grid-template-columns:1fr 1fr;gap:32px 40px;margin-top:28px}
+.crit h3{margin-bottom:6px}.crit p{margin:0;color:var(--mute)}
+.back{display:inline-block;margin-bottom:24px;color:var(--ink)}
+.hero{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
+#tools{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(14px + env(safe-area-inset-bottom,0px));background:var(--card);border:1px solid var(--line);border-radius:14px;padding:8px 10px;display:flex;gap:8px;z-index:9;box-shadow:0 6px 24px rgba(0,0,0,.18);max-width:calc(100% - 20px);flex-wrap:wrap;justify-content:center}
+body.edit [data-k]{outline:1px dashed var(--brand);outline-offset:3px;cursor:text;min-width:2ch}
+body.edit .img{cursor:pointer;outline:2px dashed var(--brand);outline-offset:3px}
+body.edit .img::after{content:"Click to change image";position:absolute;inset:auto 10px 10px auto;background:var(--brand);color:var(--on);font-size:.75rem;padding:3px 10px;border-radius:8px}
+body.edit [data-k]:empty::before{content:"Type here…";color:var(--mute)}
+.del{display:none}body.edit .del{display:inline-block;margin-top:10px}
+@media(max-width:760px){.two,.cards,.grid,.crit,.hero{grid-template-columns:1fr}nav{grid-template-columns:1fr auto}nav .t{display:none}.w{padding:44px 20px}}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<nav><div class="l"><a href="#/">Home</a><a href="#/activities">Activities</a></div><div class="t" data-k="site"></div><div class="r"><a class="btn" href="#/activities">View activities</a></div></nav>
+<main id="app"></main>
+<div id="tools">
+ <button class="btn" id="tEdit">Edit page</button>
+ <button class="btn light" id="tAdd" hidden>Add activity</button>
+ <button class="btn light" id="tExp" hidden>Export my edits</button>
+ <button class="btn light" id="tReset" hidden>Reset to original</button>
+</div>
+<input type="file" id="file" accept="image/*" hidden>
+<script>window.FINAL={"site": "Computational Thinking in Mathematics", "heroTitle": "COMPUTATIONAL THINKING THROUGH INTEGRATED MATHEMATICS LEARNING ", "intro": "Computational thinking is thinking systematically to understand, solve and evaluate problems. It is not limited to computer programming. It is usually described through six overlapping skills: decomposition, pattern recognition, abstraction, algorithm, logical thinking and evaluation.", "c1t": "Decomposition", "c1p": "Breaking a complex problem into smaller, manageable part.", "c2t": "Pattern recognition ", "c2p": "Identifying similarities, repetitions, trends or relationship in information.", "c3t": "Abstraction", "c3p": "Identifying the important information and actively ignoring unnecessary details to comtrust a simplified representation of the problem.", "c4t": "Algorithms", "c4p": "A clear, ordered sequence of steps usd to solve a problem or accomplish a task.", "c5t": "Logical reasoning", "c5p": "Using fact, relationships, rules and evidence to reach a valid, justifiable conclusion.", "c6t": "Evaluation", "c6p": "Checking, testing and judging whether a solution is correct, efficient, appropriate and reasonable.\n\n\n", "ctaT": "Read the four activity analyses", "ctaP": "Each page sets out the objective, materials, step-by-step procedure, the computational thinking skills used, and a full critical analysis.", "workT": "Four activities, one algebra strand", "workP": "Two unplugged, two plugged-in — each analysed for the computational thinking it draws on.", "heroCap": "Made By : ISAAC KHIU CHEE YEW MT1", "introHead": "WHAT IS COMPUTATIONAL THINKING?", "acts": [{"type": "Unplugged", "title": "ALGEBRA BALANCE CHALLENGE: SOLVING LINEAR EQUATIONS \n", "blurb": "Unplugged activity — linear equations\n", "c1": "#c8372d", "c2": "#e8b923", "obj": "This activity help students understand the concept of equality in algebra and solve simple linear equations using physical objects.\n", "mat": "1. A simple beam balance (a ruler resting on a pencil)\n2. Small boxes\n3. Paper and pencil\n4. A set of equation cards (e.g. 2x + 3 = 11)\n", "proc": "1. Divide students into small groups.\n2. Give each group an equation card, such as x + 2 = 6.\n3. Students represent the equation using objects:\n        Unknown x → Small boxes labelled \"x\" \n        Numbers  →  Identical boxes \n4. Students maintain the balance (equality) by removing or adding the same number of objects to both sides.\n5. Students gradually isolate x.\n6. Students record each step as an algebraic equation.\n7. Students check their answer by substituting the value of x back into the original equation.\n8. Repeat with two more equation cards of increasing difficulty.\n8. Groups explain the steps they used and compare their methods.", "skills": "Decomposition \nBreak the equation into smaller parts, such as 2x, +2, and =10.\n\nPattern Recognition \nRecognise that the same operation must be performed on both sides.\n\nAlgorithm \nFollow a sequence: simplify → isolate the variable → solve → check.\n\nLogical Reasoning\nDetermine which operation is needed to isolate x.\n\nEvaluation\nSubstitute the answer back into the original equation to verify it.\n", "s": "The physical, hands-on nature of the balance makes the abstract rule “do the same to both sides” concrete and memorable, and it needs no equipment beyond everyday classroom materials.", "e": "The activity is effective for helping students understand the steps involved in solving linear equations. Students can visually see why the same operation must be performed on both sides.", "l": "Physical materials may also be difficult to prepare or manage for a large class. Some students may focus more on manipulating the objects than understanding the underlying algebraic concept.", "i": "Provide equations with different difficulty levels according to students' abilities.The activity can also be followed by individual algebra questions to ensure students can apply the concept without physical objects. A digital version could be added as a plugged-in activity for further practice.", "img": "images/activity-1.jpg"}, {"type": "Unplugged", "title": "ICE-CREAM STICK STAIRCASES:  PATTERN DETECTIVE", "blurb": "Unplugged activity — progressions", "c1": "#1e88c8", "c2": "#e8b923", "obj": "This activity allow student easily understand the concept of progression or pattern by using physical model such as staircases. ", "mat": "1. A box of ice-cream sticks\n2. Coloured pencils\n3. Paper and pencil\n", "proc": "1. In groups of three, students build Step 1 of a staircase pattern using ice-cream sticks (4 ice-cream sticks for one square step) and record the count.\n2. Students build Step 2 by adding more toothpicks to extend the staircase, then record the new total.\n3. Students continue to Step 3 and Step 4, using a different coloured pencil each time to mark only the toothpicks that were added, making the common difference visible.\n4. Groups complete the recording table for n = 1 to 5 and describe, in their own words, the fixed number of toothpicks added at every step.\n5. Groups use the first term and the common difference from their table to write a general formula for the nth step.\n6. Test it by predicting Step 6 before building it.\n6. Check the formula against several figures to test the accuracy.\n", "skills": "Decomposition\nStudent break the pattern into repeated components and examine how each figure is constructed.\n\nPattern Recognition\nStudent identify the constant constant number of toothpicks added at every step.\n\nAlgorithm\nFollow steps to construct → count → compare → predict → formulate a rule.\n\nLogical Reasoning\nExplain why the general formula works for every step of staircase.\n\nEvaluation\nTest the formula to determine whether it is correct.\n", "s": "This activity makes pattern more visual because students physically add pieces at each step, the constant difference d is something they can see and touch, not just calculate.\n", "e": "This activity make pattern learning proses become enjoyable throughout the adding and finding common increase of ice-cream stick.", "l": "Students may identify the pattern but struggle to express it using an algebraic formula.", "i": "Provide patterns with different levels of difficulty to accommodate different abilities.", "img": "images/activity-2.jpg"}, {"type": "Plugged-in", "title": "NUMBER PATTERN GAME: FOLLOWING THE FROG\n", "blurb": "Plugged-in activity — Scratch", "c1": "#8a5a3c", "c2": "#d9a679", "scratchId": "<iframe src=\"https://scratch.mit.edu/projects/408668962/embed\" allowtransparency=\"true\" width=\"485\" height=\"402\" frameborder=\"0\" scrolling=\"no\" allowfullscreen><\/iframe>\n", "obj": "This minigame required student to identify number patterns by determine the missing number on the rock. In this way will be able to attract student interest in learning.", "skills": "Pattern Recognition\nAnalyzing the number on the rock to determine the pattern number shown\n\nAbstraction\nFocusing on the number on the rock and do not distract by the music and animation of the minigame    \n\nAlgorithm\nFollow the procedures to complete the game\n1. Analyze the number on rock\n2. Determine the pattern number\n3. Calculate and give the correct number follow the flow of pattern number in the less time \n\nEvalution\nStudent knows whether their solution is correct after they made their decision, and if they made mistakes they can improve from it. \n", "s": "This activity is challenging since student need to answer the question with the limited time. It strengthen student ability to think fast and accurate at the same time. ", "e": "This activity is effective in trainning student to solve pattern number question within minutes. This can increases their ability and kownlegde on this topics.", "l": "This game is limited for student who are already mastered this topic. Beginner will struggle at finding the pattern waste time on it. Student cant learn the real concept of pattern in stead they are just chasing the time.", "i": "Take out the timer to create relax environment for student to learn and understand the concept of pattern number.", "img": "images/activity-3.jpg"}, {"type": "Plugged-in", "title": "LINEAR EQUATION: EXPLORING Y-INTERCEPTS IN GRAPHS", "blurb": "Plugged-in activity — GeoGebra", "c1": "#3a3a3a", "c2": "#b8864f", "skills": "Decomposition\nAnalyze the relationship between linear equation and graph sketching\n\nPattern Recognition \nStudents change the y-intercept repeatedly and identify the pattern that the line moves vertically while its slope remains unchanged.\n\nAbstraction\nStudents focus on the important relationship between the equation and graph rather than unnecessary visual details.\n\nAlgorithms \nStudents can follow a sequence: change the y-intercept → observe the graph → record the result → compare the changes → formulate a conclusion.\n\nLogical Reasoning\nStudents predict what will happen when the y-intercept changes from positive to negative and justify their prediction.\n\nEvaluation\nStudents compare their predictions with the actual GeoGebra graph and evaluate whether their mathematical reasoning is correct.\n", "scratchId": "https://www.geogebra.org/m/z4q2ghqp\n", "linkBox": "https://www.geogebra.org/m/z4q2ghqp\n\n", "obj": "This activity is mainly focusing on obtain y-intercept of linear graph by using the graph tool. This allow student visually learn the concept of linear equation and finding y-intercept.", "s": "GeoGebra is very interactive tool which allows students to immediately see the effect of changing the y-intercept. This makes the connection between the algebraic equation and graphical representation easier to understand.\n", "e": "The activity is effective in developing students' conceptual understanding of linear functions because it allows them to directly observe the relationship between changes in the y-intercept and changes in the graph.", "l": "The main activity limited only focus on the y-intercept. Therefore, students may not fully explore other aspects of linear functions, such as slope, rate of change and different forms of linear equations.", "i": "This activity can be improve by adding prediction questions.“If the y-intercept changes from 2 to 5, where do you predict the graph will move?” Students then test their prediction using GeoGebra. This strengthens logical reasoning and evaluation.\n", "img": "images/activity-4.jpg"}], "heroImg": "images/hero.jpg"};</script>
+<script>
+var KEY="ct-site-v1",P="Click Edit page, then type here.";
+var D={site:"Computational Thinking in Mathematics",
+heroTitle:"Computational thinking in algebra",
+intro:"This portfolio studies where computational thinking surfaces inside algebra, and where it does not.\n\nThe task asks for two unplugged activities — done with physical materials, no screens — and two plugged-in activities that use software, in this case Scratch and GeoGebra. Every activity page follows the same structure: Objective, Materials, Procedure, Computational Thinking Skills Used, and a Critical Analysis covering strengths, effectiveness, limitations, and possible improvements.",
+c1t:"Abstraction",c1p:"Letting a symbol, a cup, or a slider stand for any value, not one fixed number.",
+c2t:"Algorithm design",c2p:"Writing a general, repeatable procedure — by hand, or as a sequence of Scratch blocks.",
+heroCap:"",introHead:"",c3t:"Decomposition",c3p:"",c4t:"Pattern recognition",c4p:"",c5t:"Logical reasoning",c5p:"",c6t:"Logical reasoning",c6p:"",
+ctaT:"Read the four activity analyses",ctaP:"Each page sets out the objective, materials, step-by-step procedure, the computational thinking skills used, and a full critical analysis.",
+workT:"Four activities, one algebra strand",workP:"Two unplugged, two plugged-in — each analysed for the computational thinking it draws on.",
+acts:[
+{type:"Unplugged",title:"The Human Balance: Solving Linear Equations with a Balance Beam",blurb:"Unplugged activity — linear equations & progressions",c1:"#c8372d",c2:"#e8b923",
+obj:"Students model a linear equation on a balance beam, using cups for the unknown and counters for the constants.",
+mat:"Balance beam or ruler, paper cups, counters in two colours, worksheet.",
+proc:"1. Set up the equation on the two pans.\n2. Do the same to both sides to keep the beam level.\n3. Isolate one cup and read off its value.",
+skills:"Abstraction — a cup stands for any unknown value. Algorithm design — the same-to-both-sides rule becomes a repeatable procedure.",
+s:"The physical, hands-on nature of the balance makes the abstract rule “do the same to both sides” concrete and memorable, and it needs no equipment beyond everyday classroom materials.",
+e:"Well suited to introducing linear equations to Form 1-2 students who have not yet met formal symbolic manipulation; the physical consequence of an unbalanced pan gives immediate, self-correcting feedback that a worksheet alone cannot.",
+l:"The model becomes awkward once the equation involves negative numbers or coefficients that cannot be shared evenly between cups. It is also slow for a full class of equations, and the balance itself cannot represent variables on both sides of the equation without extra scaffolding from the teacher.",
+i:"Introduce a second colour of counter to represent negative units before moving to equations with subtraction. Follow the session with a short reflection journal entry, and pair the activity with the GeoGebra slider activity in this portfolio so students can check their balance-beam answers against a dynamic graph."},
+{type:"Unplugged",title:"Toothpick Staircases: Discovering Arithmetic Progressions",blurb:"Unplugged activity — linear equations & progressions",c1:"#1e88c8",c2:"#e8b923"},
+{type:"Plugged-in",title:"Scratch Equation Balancer: Animating the Steps of Solving an Equation",blurb:"Plugged-in activity — Scratch",c1:"#8a5a3c",c2:"#d9a679"},
+{type:"Plugged-in",title:"GeoGebra Sliders: Exploring Arithmetic Progressions Dynamically",blurb:"Plugged-in activity — GeoGebra",c1:"#3a3a3a",c2:"#b8864f",
+skills:"Abstraction — a and d are treated as adjustable parameters rather than fixed numbers, separating the general rule from any one sequence. Pattern recognition — students connect a steeper or shallower line on the graph to a larger or smaller common difference. Simulation and modelling — sliders let students test “what if” changes instantly rather than recomputing by hand. Evaluation — students verify the software's output against their own hand calculation rather than trusting it blindly."}]};
+var S;try{S=JSON.parse(localStorage.getItem(KEY))}catch(e){}
+if(!S||!S.acts)S=JSON.parse(JSON.stringify(D));
+for(var q in D){if(S[q]===undefined)S[q]=D[q]}
+if(window.FINAL){S=window.FINAL;document.getElementById("tools").style.display="none"}
+var edit=false,img=null;
+function save(){try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){alert("Could not save — an image may be too large.")}}
+function esc(s){return String(s==null?"":s).replace(/&/g,"&amp;").replace(/</g,"&lt;")}
+function k(path,tag,cls,fallback){var v=get(path);return "<"+tag+(cls?' class="'+cls+'"':"")+' data-k="'+path+'">'+esc(v||fallback||"")+"</"+tag+">"}
+function get(p){return p.split(".").reduce(function(o,x){return o&&o[x]},S)}
+function set(p,v){var a=p.split("."),o=S;for(var i=0;i<a.length-1;i++)o=o[a[i]];o[a[a.length-1]]=v}
+function im(path,a){var u=a.img;return '<div class="img" data-img="'+path+'" style="--c1:'+(a.c1||"#8f0a4a")+";--c2:"+(a.c2||"#d9a679")+(u?";background-image:url('"+u+"')":"")+'"></div>'}
+function home(){var h="";
+h+='<section class="w"><div class="bar"></div>'+k("heroTitle","h1")+'<div style="margin-top:32px">'+im("heroImg",{img:S.heroImg,c1:"#8f0a4a",c2:"#d9a679"}).replace('class="img"','class="img wide'+(S.heroImg?"":" empty")+'"')+k("heroCap","p","cap opt")+"</div></section>";
+var cc="";for(var n=1;n<=6;n++)cc+='<div class="card">'+k("c"+n+"t","h3")+k("c"+n+"p","p")+"</div>";
+h+='<section class="alt"><div class="w two"><div>'+k("introHead","h2","big opt")+k("intro","p","","")+'</div><div class="cards">'+cc+"</div></div></section>";
+h+='<section class="cta"><div class="w">'+k("ctaT","h2")+k("ctaP","p")+'<a class="btn" href="#/activities">Go to activities</a></div></section>';
+return h}
+function list(){var h='<section class="w"><div class="bar"></div>'+k("workT","h2")+k("workP","p")+'<div class="grid">';
+S.acts.forEach(function(a,i){h+='<div><a class="tile" href="#/activities/'+i+'">'+im("acts."+i+".img",a)+'<h3 style="margin-top:14px" data-k="acts.'+i+'.title">'+esc(a.title)+'</h3></a><span class="pill" data-k="acts.'+i+'.type">'+esc(a.type)+"</span>"+k("acts."+i+".blurb","p")+'<button class="btn light del" data-del="'+i+'">Delete</button></div>'});
+return h+"</div></section>"}
+function sec(n,t,key,alt){return '<section class="'+(alt?"alt":"")+'"><div class="w sec"><div class="bar"></div><h2>'+t+"</h2>"+k("acts."+n+"."+key,"p","",P)+"</div></section>"}
+function scr(p,a){var pl=S.acts.filter(function(x){return /^plugged/i.test((x.type||"").trim())});
+if(pl.indexOf(a)===1){var lv=String(a.linkBox||"").trim();if(window.FINAL&&/^https?:\/\/\S+$/.test(lv))return '<p class="tb"><a href="'+esc(lv)+'" target="_blank" rel="noopener">Open the GeoGebra activity ↗</a></p>';return k(p+"linkBox","p","opt tb")}
+if(false){var t=String(a.ggb||""),g=t.match(/\/(?:m|id)\/([A-Za-z0-9]{4,})/)||t.match(/^\s*([A-Za-z0-9]{4,})\s*$/),o="";
+if(g){o='<div class="sbox" style="aspect-ratio:4/3"><iframe src="https://www.geogebra.org/material/iframe/id/'+g[1]+'/width/800/height/600" allowfullscreen loading="lazy" title="GeoGebra activity"></iframe></div><p class="cap"><a href="https://www.geogebra.org/m/'+g[1]+'" target="_blank" rel="noopener">Open this activity on GeoGebra ↗</a></p>'}
+return o+'<p class="cap editonly"><b>GeoGebra link</b> — paste it here to show the live activity:</p>'+k(p+"ggb","p","cap opt")}
+var m=String(a.scratchId||"").match(/\d{4,}/),h;
+if(m){h='<div class="sbox"><iframe src="https://scratch.mit.edu/projects/'+m[0]+'/embed" allowfullscreen loading="lazy" title="Scratch project"></iframe></div><p class="cap"><a href="https://scratch.mit.edu/projects/'+m[0]+'/" target="_blank" rel="noopener">Open this project on Scratch ↗</a></p>'}
+else{h=""}
+return h+'<p class="cap editonly"><b>Scratch project number or link</b> — paste it here to show the live project:</p>'+k(p+"scratchId","p","cap opt")}
+function act(n){var a=S.acts[n];if(!a)return home();var p="acts."+n+".";
+var h='<section class="w"><a class="back" href="#/activities">← All activities</a><div class="hero"><div><span class="pill" data-k="'+p+'type">'+esc(a.type)+" activity</span>"+k(p+"title","h1")+"</div>"+im(p+"img",a)+"</div></section>";
+if(/^plugged/i.test((a.type||"").trim())){h+='<section><div class="w two"><div class="sec"><div class="bar"></div><h2>Objective</h2>'+k(p+"obj","p","",P)+"</div><div>"+scr(p,a)+"</div></div></section>"+sec(n,"Computational thinking skills used","skills")}else{h+=sec(n,"Objective","obj",1)+sec(n,"Materials","mat")+sec(n,"Procedure","proc",1)+sec(n,"Computational thinking skills used","skills")}
+h+='<section class="alt"><div class="w"><div class="bar"></div><h2>Critical analysis</h2><div class="crit"><div><h3>Strengths</h3>'+k(p+"s","p","",P)+"</div><div><h3>Effectiveness</h3>"+k(p+"e","p","",P)+"</div><div><h3>Limitations</h3>"+k(p+"l","p","",P)+"</div><div><h3>Possible improvements</h3>"+k(p+"i","p","",P)+"</div></div></div></section>";
+return h}
+function route(){var r=location.hash.replace("#/","").split("/"),h;
+if(r[0]==="activities"&&r[1]!=null&&r[1]!=="")h=act(+r[1]);else if(r[0]==="activities")h='<div style="padding-top:20px"></div>'+list();else h=home();
+document.body.classList.toggle("home",r[0]!=="activities");document.getElementById("app").innerHTML=h;document.querySelector(".t").innerHTML=k("site","span");mark();window.scrollTo(0,0)}
+function mark(){document.querySelectorAll("[data-k]").forEach(function(e){e.contentEditable=edit?"plaintext-only":"false"});
+document.querySelectorAll("a.tile").forEach(function(a){a.draggable=!edit});
+document.body.classList.toggle("edit",edit);
+tEdit.textContent=edit?"Done editing":"Edit page";tAdd.hidden=tReset.hidden=tExp.hidden=!edit}
+document.addEventListener("input",function(e){var p=e.target.dataset&&e.target.dataset.k;if(p){set(p,e.target.innerText);save()}});
+document.addEventListener("focusout",function(e){var d=e.target.dataset;if(d&&d.k&&/(scratchId|ggb)$/.test(d.k)){var y=window.scrollY;route();window.scrollTo(0,y)}});
+document.addEventListener("click",function(e){var t=e.target;
+if(edit&&t.closest("a.tile")||edit&&t.closest("[data-k]")&&t.closest("a")){e.preventDefault()}
+var d=t.closest("[data-del]");if(d&&confirm("Delete this activity?")){S.acts.splice(+d.dataset.del,1);save();route()}
+var m=t.closest("[data-img]");if(edit&&m){e.preventDefault();img=m.dataset.img;file.click()}});
+file.onchange=function(){var f=file.files[0];if(!f)return;var r=new FileReader();r.onload=function(){var c=new Image();c.onload=function(){var s=Math.min(1,1000/c.width),cv=document.createElement("canvas");cv.width=c.width*s;cv.height=c.height*s;cv.getContext("2d").drawImage(c,0,0,cv.width,cv.height);set(img,cv.toDataURL("image/jpeg",.8));save();route()};c.src=r.result};r.readAsDataURL(f);file.value=""};
+tEdit.onclick=function(){edit=!edit;mark()};
+tAdd.onclick=function(){S.acts.push({type:"Unplugged",title:"New activity title",blurb:"Short description",c1:"#8f0a4a",c2:"#d9a679"});save();location.hash="#/activities/"+(S.acts.length-1)};
+tExp.onclick=function(){var j=JSON.stringify(S),b=document.createElement("div");b.style.cssText="position:fixed;inset:0;z-index:20;background:rgba(0,0,0,.6);display:flex;align-items:center;justify-content:center;padding:20px";b.innerHTML='<div class="card" style="max-width:640px;width:100%"><h3>Your edits</h3><p>Copy everything below and paste it into the chat. It will be built into a final, locked version.</p><textarea readonly style="width:100%;height:200px;font:12px monospace;background:var(--bg);color:var(--ink);border:1px solid var(--line);border-radius:8px"></textarea><p><button class="btn" id="xc">Copy</button> <button class="btn light" id="xx">Close</button></p></div>';document.body.appendChild(b);var t=b.querySelector("textarea");t.value=j;t.select();b.querySelector("#xc").onclick=function(){t.select();try{document.execCommand("copy")}catch(e){}};b.querySelector("#xx").onclick=function(){b.remove()}};
+tReset.onclick=function(){if(confirm("Discard all your edits and restore the original content?")){S=JSON.parse(JSON.stringify(D));save();route()}};
+window.onhashchange=route;route();
+</script>
+</body>
+</html>
